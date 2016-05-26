@@ -1,1 +1,0 @@
-#Angular 2 and node implementation
