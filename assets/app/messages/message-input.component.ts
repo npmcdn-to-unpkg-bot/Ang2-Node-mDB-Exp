@@ -13,7 +13,6 @@ import {MessageService} from "./message.service";
             <button  type="submit" class="btn btn-primary" (click)="onCreate(input.value)">Send Message</button>
         </section>
     `,
-    providers: [MessageService]
 })
 
 export class MessageInputComponent {
