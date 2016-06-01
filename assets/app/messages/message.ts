@@ -6,7 +6,7 @@ export class Message {
 
     constructor (content: string, messageId?: string, username?: string, userId?: string) {
         this.content = content;
-        this.messageId = username;
+        this.messageId = messageId;
         this.username = username;
         this.userId = userId;
     }
