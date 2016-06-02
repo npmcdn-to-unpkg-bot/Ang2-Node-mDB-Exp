@@ -1,19 +1,29 @@
 import { Component } from '@angular/core';
-import {MessageListComponent} from "./messages/message-list.component";
-import {MessageInputComponent} from "./messages/message-input.component";
+import {ROUTER_DIRECTIVES, Routes} from "@angular/router";
+
+import {HeaderComponent} from "./header.component";
+import {MessagesComponent} from "./messages/messages.component";
+import {AuthenticationComponent} from "./auth/authentication.component";
 
 @Component({
     selector: 'my-app',
     template: ` 
-        <div class="row">
-            <my-message-input></my-message-input>            
+        <div>
+            <my-header>
+                    
+            </my-header>
+            <router-outlet>
+            
+            </router-outlet>
         </div>
-        <div class="row">
-            <my-message-list></my-message-list>
-        </div>  
     `,
-    directives: [MessageListComponent, MessageInputComponent]
+    directives: [ROUTER_DIRECTIVES,HeaderComponent]
 })
+//noinspection TypeScriptValidateTypes
+@Routes([
+    {path: '/', component: MessagesComponent},
+    {path: '/auth', component: AuthenticationComponent}
+])
 export class AppComponent {
     
 }   
