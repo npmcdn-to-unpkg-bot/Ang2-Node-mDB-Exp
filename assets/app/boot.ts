@@ -5,8 +5,9 @@ import {MessageService} from "./messages/message.service";
 import {ROUTER_PROVIDERS} from "@angular/router";
 import {provide} from "@angular/core";
 import {LocationStrategy, HashLocationStrategy} from "@angular/common";
+import {HTTP_PROVIDERS} from "@angular/http";
 
 
-bootstrap(AppComponent, [MessageService, ROUTER_PROVIDERS, provide(LocationStrategy, { useClass: HashLocationStrategy })]);
+bootstrap(AppComponent, [MessageService, ROUTER_PROVIDERS, provide(LocationStrategy, { useClass: HashLocationStrategy }), HTTP_PROVIDERS]);
 
 //provide with LocationStrategy tells Angular2 we don't want to use default HTML5 strategy of using normal routes

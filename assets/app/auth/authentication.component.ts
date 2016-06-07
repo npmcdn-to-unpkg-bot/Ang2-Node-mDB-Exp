@@ -1,20 +1,18 @@
-import {Component} from "@angular/core";
-import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
+import { Component } from "@angular/core";
+import { Routes, ROUTER_DIRECTIVES } from "@angular/router";
 
-import {SignupComponent} from "./signup.component";
-import {SigninComponent} from "./signin.component";
-import {LogoutComponent} from "./logout.component";
-
-
+import { SignupComponent } from "./signup.component";
+import { SigninComponent } from "./signin.component";
+import { LogoutComponent } from "./logout.component";
 @Component({
     selector: 'my-auth',
     template: `
         <header class="row spacing">
-            <nav class="cold-md-8 col-md-offset-2">
+            <nav class="col-md-8 col-md-offset-2">
                 <ul class="nav nav-tabs">
-                    <li><a [routerLink]="['./signin']" href="">Signup</a></li>
-                    <li><a [routerLink]="['./signup']" href="">Signin</a></li>
-                    <li><a [routerLink]="['./logout']" href="">Logout</a></li>                   
+                    <li><a [routerLink]="['./signup']">Signup</a></li>
+                    <li><a [routerLink]="['./signin']">Signin</a></li>
+                    <li><a [routerLink]="['./logout']">Logout</a></li>
                 </ul>
             </nav>
         </header>
@@ -33,13 +31,12 @@ import {LogoutComponent} from "./logout.component";
         }
     `]
 })
-
-//noinspection TypeScriptValidateTypes
 @Routes([
-        { path: '/signin', component: SignupComponent, useAsDefault: true },
-        { path: '/signup', component: SigninComponent },
-        { path: '/logout', component: LogoutComponent }
+    {path: '/signup', component: SignupComponent},
+    {path: '/signin', component: SigninComponent},
+    {path: '/logout', component: LogoutComponent}
 ])
 export class AuthenticationComponent {
+
     
 }

@@ -18,10 +18,15 @@ export class MessageListComponent implements OnInit{
     //being injected injected.
     constructor(private _messageService: MessageService) {}
 
-    messages: Message[]  = [
-    ];
+    messages: Message[];
 
     ngOnInit() {
-        this.messages = this._messageService.getMessages();
+        this._messageService.getMessages()
+            .subscribe(
+                messages => {
+                    this.messages = messages;
+                    this._messageService.messages = messages;
+                }
+            );
     }
-};
+}
