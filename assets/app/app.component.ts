@@ -19,6 +19,7 @@ import {AuthenticationComponent} from "./auth/authentication.component";
     `,
     directives: [ROUTER_DIRECTIVES,HeaderComponent]
 })
+
 //noinspection TypeScriptValidateTypes
 @Routes([
     {path: '/', component: MessagesComponent},

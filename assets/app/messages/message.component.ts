@@ -23,6 +23,8 @@ import {MessageService} from "./message.service";
     `
 })
 
+
+
 export class MessageComponent {
     @Input() message: Message;
     //Output declares an event-bound output property
