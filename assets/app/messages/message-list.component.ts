@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageComponent} from "./message.component";
 import {Message} from "./message";
 import {MessageService} from "./message.service";
+import {ErrorService} from "../error/error.service";
 
 @Component({
     selector: 'my-message-list',
@@ -16,7 +17,7 @@ import {MessageService} from "./message.service";
 export class MessageListComponent implements OnInit{
     //tell Angular2 that you want to bind to message service that is
     //being injected injected.
-    constructor(private _messageService: MessageService) {}
+    constructor(private _messageService: MessageService, private _errorService: ErrorService) {}
 
     messages: Message[];
 
@@ -26,7 +27,8 @@ export class MessageListComponent implements OnInit{
                 messages => {
                     this.messages = messages;
                     this._messageService.messages = messages;
-                }
+                },
+                error => this._errorService.handleError(error)
             );
     }
 }

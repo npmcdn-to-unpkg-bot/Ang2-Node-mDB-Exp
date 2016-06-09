@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 
 import {User} from "./user";
 import {AuthService} from "./auth.service";
+import {ErrorService} from "../error/error.service";
 
 @Component({
     selector: 'my-signin',
@@ -26,7 +27,7 @@ import {AuthService} from "./auth.service";
 export class SigninComponent {
     myForm: ControlGroup;
 
-    constructor(private _fb:FormBuilder, private _authService: AuthService, private _router: Router) {}
+    constructor(private _fb:FormBuilder, private _authService: AuthService, private _router: Router, private _errorService: ErrorService) {}
 
     onSubmit() {
         console.log(this.myForm.value)
@@ -40,7 +41,7 @@ export class SigninComponent {
                     localStorage.setItem('userId', data.userId);
                     this._router.navigateByUrl('/')
                 },
-                error => console.error(error)
+                error => this._errorService.handleError(error)
             )
     }
 

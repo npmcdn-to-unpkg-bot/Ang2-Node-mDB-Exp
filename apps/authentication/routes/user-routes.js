@@ -3,28 +3,8 @@ var router = express.Router();
 var passwordHash = require('password-hash');
 var jwt = require('jsonwebtoken');
 
-var User = require('../models/user');
+var User = require('../models/user-model');
 
-router.post('/', function(req, res, next) {
-    var user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: passwordHash.generate(req.body.password),
-        email: req.body.email
-    });
-    user.save(function(err, result) {
-        if (err) {
-            return res.status(404).json({
-                title: 'An error occurred',
-                error: err
-            });
-        }
-        res.status(200).json({
-            message: 'Success',
-            obj: result
-        });
-    });
-});
 router.post('/signin', function (req, res, next) {
     User.findOne({email: req.body.email}, function (err, doc) {
         if (err) {
@@ -54,5 +34,31 @@ router.post('/signin', function (req, res, next) {
         })
     })
 
-})
+});
+
+//create a middleware that will only allow admins to create a user. 
+
+router.post('/', function(req, res, next) {
+    var user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: passwordHash.generate(req.body.password),
+        email: req.body.email,
+        admin: req.body.admin
+    });
+    user.save(function(err, result) {
+        if (err) {
+            return res.status(404).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+        res.status(200).json({
+            message: 'Success',
+            obj: result
+        });
+    });
+});
+
+
 module.exports = router;

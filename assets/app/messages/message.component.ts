@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'; //you import this in order to use the @component decorator on line 3
 import {Message} from "./message";
 import {MessageService} from "./message.service";
+import {ErrorService} from "../error/error.service";
 
 
 @Component({
@@ -29,7 +30,7 @@ export class MessageComponent {
     @Input() message: Message;
     //Output declares an event-bound output property
     @Output() editClicked = new EventEmitter<string>(); //catches events in Angular2
-    constructor (private _messageService: MessageService) {}
+    constructor (private _messageService: MessageService, private _errorService: ErrorService) {}
     onEdit() {
        this._messageService.editMessage(this.message);
     }
@@ -37,7 +38,7 @@ export class MessageComponent {
         this._messageService.deleteMessage(this.message)
             .subscribe(
                 data => console.log(data),
-                error => console.error(error)
+                error => this._errorService.handleError(error)
             )
     }
     belongsToUser() {

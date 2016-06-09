@@ -144,14 +144,14 @@ System.config({
 
 Now any code that loads from `[baseURL]/templates/*.html` will use the text loader plugin and return the loaded content:
 
-app.js
+server.js
 ```javascript
 import htmlSource from 'templates/tpl.html';
 
 document.querySelector('.container').innerHTML = htmlSource;
 ```
 
-When we build app.js, the text plugin will then automatically inline the templates into the bundle during the build.
+When we build server.js, the text plugin will then automatically inline the templates into the bundle during the build.
 
 #### Plugin Syntax
 
